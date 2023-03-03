@@ -30,8 +30,6 @@ in
       inherit inputs user location;
       host = {
         hostName = "desktop";
-        mainMonitor = "HDMI-A-3";
-        secondMonitor = "DP-1";
       };
     };                                                      # Pass flake variable
     modules = [                                             # Modules that are used.
@@ -44,8 +42,6 @@ in
           inherit user;
           host = {
             hostName = "desktop";     #For Xorg iGPU  | Videocard 
-            mainMonitor = "HDMI-A-3"; #HDMIA3         | HDMI-A-1
-            secondMonitor = "DP-1";   #DP1            | DisplayPort-1
           };
         };                                                  # Pass flake variable
         home-manager.users.${user} = {
