@@ -19,6 +19,7 @@ let
   pkgs = import nixpkgs {
     inherit system;
     config.allowUnfree = true;                              # Allow proprietary software
+    config.allowBroken = true;
   };
 
   lib = nixpkgs.lib;
@@ -32,7 +33,7 @@ in
         hostName = "desktop";
       };
     };                                                      # Pass flake variable
-    modules = [                                             # Modules that are used.
+    modules = [    
       ./desktop
       ./configuration.nix
       home-manager.nixosModules.home-manager {              # Home-Manager module that is used.

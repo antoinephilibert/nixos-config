@@ -16,6 +16,7 @@
         url = "github:nix-community/home-manager";
         inputs.nixpkgs.follows = "nixpkgs";
       };
+
     };
 
   outputs = inputs @ { self, nixpkgs, home-manager, ... }:                  # Function that tells my flake which to use and what do what to do with the dependencies.
@@ -27,7 +28,7 @@
       nixosConfigurations = (                                               # NixOS configurations
         import ./hosts {                                                    # Imports ./hosts/default.nix
           inherit (nixpkgs) lib;
-          inherit inputs nixpkgs home-manager user location ;               # Also inherit home-manager so it does not need to be defined here.
+          inherit inputs nixpkgs home-manager user location;               # Also inherit home-manager so it does not need to be defined here.
         }
       );
 
