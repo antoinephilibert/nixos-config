@@ -22,18 +22,17 @@
 
 {
   imports =                                                # For now, if applying to other system, swap files
-    [(import ./hardware-configuration.nix)];               # Current system hardware config @ /etc/nixos/hardware-configuration.nix
+    [(import ./hardware-configuration.nix)] ++
+    [(import ../../modules/neovim/default.nix)] ++
+    [(import ../../modules/vscode/default.nix)];               # Current system hardware config @ /etc/nixos/hardware-configuration.nix
 
   boot = {                                      # Boot options
     kernelPackages = pkgs.linuxPackages_latest;
 
     loader = {                                   # For legacy boot
-      grub = {
-        enable = true;
-        version = 2;
-        device = "/dev/sda";                    # Name of hard drive (can also be vda)
-      };
-      timeout = 10;                              # Grub auto select timeout
+       systemd-boot.enable = true;
+       efi.canTouchEfiVariables = true;
+       efi.efiSysMountPoint = "/boot/efi";
     };
   };
 
