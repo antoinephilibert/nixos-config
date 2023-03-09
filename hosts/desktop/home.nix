@@ -10,6 +10,11 @@
 { pkgs, ... }:
 
 {
+  imports = [
+     ../../modules/vscode/home.nix
+     ../../modules/neovim/home.nix
+  ];
+
   home = {
     packages = with pkgs; [
 	     google-chrome

@@ -69,6 +69,7 @@
       pciutils
       usbutils
       wget
+      gcc
     ];
   };
 
