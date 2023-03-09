@@ -70,6 +70,12 @@
       usbutils
       wget
       gcc
+      google-chrome
+      firefox
+      neovim
+      gnumake
+      nodejs
+      cargo
     ];
   };
 

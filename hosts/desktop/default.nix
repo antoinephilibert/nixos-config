@@ -23,7 +23,6 @@
 {
   imports =                                                
     [(import ./hardware-configuration.nix)];
-    # [(import ../../modules/neovim/default.nix)];
     #[(import ../../modules/hyprland/default.nix)];
     #[(import ../../modules/vscode/default.nix)];               
 

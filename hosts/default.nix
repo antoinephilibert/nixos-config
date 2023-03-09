@@ -11,7 +11,7 @@
 #            └─ ./home.nix 
 #
 
-{ lib, inputs, nixpkgs, home-manager, user, location, ... }:
+{ lib, inputs, nixpkgs, user, location, ... }:
 
 let
   system = "x86_64-linux";                                  # System architecture
@@ -36,19 +36,6 @@ in
     modules = [    
       ./desktop
       ./configuration.nix
-      home-manager.nixosModules.home-manager {              # Home-Manager module that is used.
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = {
-          inherit user;
-          host = {
-            hostName = "desktop";     #For Xorg iGPU  | Videocard 
-          };
-        };                                                  # Pass flake variable
-        home-manager.users.${user} = {
-          imports = [(import ./home.nix)] ++ [(import ./desktop/home.nix)];
-        };
-      }
     ];
   };
 }
