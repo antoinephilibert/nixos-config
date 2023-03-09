@@ -9,7 +9,6 @@
     };
     systemPackages = with pkgs; [
       vim
-      git
       killall
       nano
       pciutils

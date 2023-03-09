@@ -11,31 +11,44 @@
 #            └─ ./home.nix 
 #
 
-{ lib, inputs, nixpkgs, user, location, ... }:
+{ lib, inputs, nixpkgs, home-manager, user, location, ... }:
 
 let
-  system = "x86_64-linux";                                  # System architecture
+  system = "x86_64-linux";                              
 
   pkgs = import nixpkgs {
     inherit system;
-    config.allowUnfree = true;                              # Allow proprietary software
+    config.allowUnfree = true;                        
     config.allowBroken = true;
   };
 
   lib = nixpkgs.lib;
 in
 {
-  desktop = lib.nixosSystem {                               # Desktop profile
+  desktop = lib.nixosSystem {                           
     inherit system;
     specialArgs = {
       inherit inputs user location;
       host = {
         hostName = "desktop";
       };
-    };                                                      # Pass flake variable
+    };                  
     modules = [    
       ./desktop
       ./configuration.nix
+      home-manager.nixosModules.home-manager {          
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.extraSpecialArgs = {
+          inherit user;
+          host = {
+            hostName = "desktop";
+          };
+        };                       
+        home-manager.users.${user} = {
+          imports = [(import ./home.nix)];
+        };
+      }      
     ];
   };
 }
