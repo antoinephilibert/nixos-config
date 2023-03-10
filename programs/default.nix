@@ -21,6 +21,7 @@
       gnumake
       nodejs
       cargo
+      nb
     ];
   };
 }

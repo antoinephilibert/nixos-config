@@ -32,11 +32,18 @@
     home-manager.enable = true;
   };
 
-
   programs.git = {
     enable = true;
 
     userName = "Antoine Philibert";
     userEmail = "antoine.philibert@gmail.com";
   };
+
+  programs.bash = {
+    enable = true;
+    bashrcExtra = ''
+       ssh-add ~/.ssh/id_rsa-github &> /dev/null
+    '';
+  };
+
 }
