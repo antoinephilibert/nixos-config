@@ -23,6 +23,7 @@
       cargo
       nb
       bash
+      jdk17
     ];
   };
 }
