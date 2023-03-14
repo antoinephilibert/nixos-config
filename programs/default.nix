@@ -22,6 +22,7 @@
       nodejs
       cargo
       nb
+      bash
     ];
   };
 }

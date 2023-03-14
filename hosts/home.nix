@@ -43,7 +43,18 @@
     enable = true;
     bashrcExtra = ''
        ssh-add ~/.ssh/id_rsa-github &> /dev/null
+       ssh-add ~/.ssh/id_rsa-bitbucket &> /dev/null
+       ssh-add ~/.ssh/id_rsa-centos-antoine &> /dev/null
+       [[ -f ~/.bashrcExtra ]] && . ~/.bashrcExtra
     '';
+  };
+
+  programs.tmux = {
+    enable = true;
+
+    plugins = with pkgs; [
+      tmuxPlugins.better-mouse-mode
+    ];
   };
 
 }
